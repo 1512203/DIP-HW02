@@ -79,6 +79,17 @@ typedef map<string, void*> argv_json;
 #define COMMAND_HISTOGRAM_EQUALIZATION_HSV          "--hqhsv"
 
 
+const double TO_GRAYSCALE_COEFF[3] = { 0.11, 0.59, 0.30 };
+const double EPSILON = 1E-9;
+
+
+
+/* Some utility function */
+
+Mat readImage(string pathToImage);
+void displayImage(string windowName, Mat img);
+bool isGrayscale(Mat img);
+bool isEqualDouble(double a, double b);
 
 #endif
 

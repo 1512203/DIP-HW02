@@ -13,7 +13,7 @@ set( CMAKE_CXX_STANDARD_REQUIRED ON )
 set( CMAKE_CXX_EXTENSIONS OFF )
 
 # Project sources
-set ( PROJECT_SOURCES src/common.h )
+set ( PROJECT_SOURCES src/common.h src/common.cpp src/BaseProcessor.h src/BaseProcessor.cpp )
 
 # The main program
 add_executable( DIP_HW02 src/main.cpp ${PROJECT_SOURCES})
