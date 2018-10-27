@@ -9,7 +9,6 @@ class GChannelQuantizator: public PixelQuantizator {
 private:
 protected:
     static const int QUANT_MAX = 255;
-    Mat image;
 public:
     GChannelQuantizator(Mat image): PixelQuantizator(image) {}
     int getQuantMax();

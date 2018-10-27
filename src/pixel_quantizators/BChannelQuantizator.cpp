@@ -12,4 +12,5 @@ int BChannelQuantizator::quantizePixel(int y, int x) {
 
 
 void BChannelQuantizator::assignPixelFromQuantization(Mat* resultImage, int y, int x, int value) {
+    resultImage->at<Vec3b>(y, x)[0] = value;
 }

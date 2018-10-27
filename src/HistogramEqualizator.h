@@ -14,12 +14,13 @@
 class HistogramEqualizator: public BaseProcessor {
 private:
 protected:
-    void calculateHistogram(double* hist, PixelQuantizator* pixelQuantizator);
+    void calculateHistogram(double* &hist, PixelQuantizator* pixelQuantizator);
     void equalizeHistogram(double* hist, PixelQuantizator* pixelQuantizator);
     void getImageFromEqualizedHistogram(double* hist, PixelQuantizator* pixelQuantizator, Mat* resultImage);
     Mat processImage(argv_t kwargs);
 public:
-    HistogramEqualizator(const string pathToImage): BaseProcessor(pathToImage) {}
+    HistogramEqualizator(string pathToImage): BaseProcessor(pathToImage) {}
+    ~HistogramEqualizator();
 };
 
 

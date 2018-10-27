@@ -12,4 +12,5 @@ int GChannelQuantizator::quantizePixel(int y, int x) {
 
 
 void GChannelQuantizator::assignPixelFromQuantization(Mat* resultImage, int y, int x, int value) {
+    resultImage->at<Vec3b>(y, x)[1] = value;
 }

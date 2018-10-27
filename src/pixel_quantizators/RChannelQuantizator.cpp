@@ -12,4 +12,5 @@ int RChannelQuantizator::quantizePixel(int y, int x) {
 
 
 void RChannelQuantizator::assignPixelFromQuantization(Mat* resultImage, int y, int x, int value) {
+    resultImage->at<Vec3b>(y, x)[2] = value;
 }

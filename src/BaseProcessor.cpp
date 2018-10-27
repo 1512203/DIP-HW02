@@ -1,13 +1,16 @@
 #include "BaseProcessor.h"
 
 
-BaseProcessor::BaseProcessor(const string pathToImage) {
+BaseProcessor::BaseProcessor(string pathToImage) {
     this->image = readImage(pathToImage);
 }
 
 
 void BaseProcessor::execute(argv_t kwargs) {
-    this->processImage(kwargs);
+    displayImage("Original Image", this->image);
+    Mat resultImage = this->processImage(kwargs);
+    displayImage("Result Image", resultImage);
+	waitKey(0);
 }
 
 

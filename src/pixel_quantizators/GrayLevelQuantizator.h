@@ -9,7 +9,6 @@ class GrayLevelQuantizator: public PixelQuantizator {
 private:
 protected:
     static const int QUANT_MAX = 255;
-    Mat image;
 public:
     GrayLevelQuantizator(Mat image): PixelQuantizator(image) {}
     int getQuantMax();

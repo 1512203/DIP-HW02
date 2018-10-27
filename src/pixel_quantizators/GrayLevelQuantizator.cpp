@@ -15,4 +15,6 @@ int GrayLevelQuantizator::quantizePixel(int y, int x) {
 
 
 void GrayLevelQuantizator::assignPixelFromQuantization(Mat* resultImage, int y, int x, int value) {
+    for (int c = 0; c < 3; ++c)
+        resultImage->at<Vec3b>(y, x)[c] = value;
 }

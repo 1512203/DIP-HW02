@@ -9,7 +9,7 @@ protected:
     Mat image;
     virtual Mat processImage(argv_t kwargs) = 0;
 public:
-    BaseProcessor(const string pathToImage);
+    BaseProcessor(string pathToImage);
     void execute(argv_t kwargs);
     virtual ~BaseProcessor();
 };

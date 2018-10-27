@@ -1,8 +1,10 @@
 #include "HistogramEqualizator.h"
 
 
-void HistogramEqualizator::calculateHistogram(double* hist, PixelQuantizator* pixelQuantizator) {
+void HistogramEqualizator::calculateHistogram(double* &hist, PixelQuantizator* pixelQuantizator) {
     hist = new double[pixelQuantizator->getQuantMax() + 1];
+	for (int v = 0; v <= pixelQuantizator->getQuantMax(); ++v)
+		hist[v] = 0;
     for (int y = 0; y < this->image.rows; ++y) {
         for (int x = 0; x < this->image.cols; ++x) {
             int v = pixelQuantizator->quantizePixel(y, x);
@@ -27,7 +29,7 @@ void HistogramEqualizator::getImageFromEqualizedHistogram(double* hist, PixelQua
     for (int y = 0; y < this->image.rows; ++y) {
         for (int x = 0; x < this->image.cols; ++x) {
             int v = pixelQuantizator->quantizePixel(y, x);
-            int new_v = hist[v];
+            int new_v = cvRound(hist[v]);
             pixelQuantizator->assignPixelFromQuantization(resultImage, y, x, new_v);
         }
     }
@@ -39,9 +41,10 @@ Mat HistogramEqualizator::processImage(argv_t kwargs) {
     size_t pos = 0;
     string token;
     Mat resultImage = Mat::zeros(this->image.size(), this->image.type());
-    while ((pos = listChannels.find(',')) != string::npos) {
+    while ((pos = listChannels.find(DELIMITER_CHAR)) != string::npos) {
         token = listChannels.substr(0, pos);
         PixelQuantizator* pixelQuantizator = NULL;
+		cout << "Equalizing on " << token << endl;
         if (token == B_CHANNEL) {
              pixelQuantizator = new BChannelQuantizator(this->image);
         }
@@ -60,10 +63,21 @@ Mat HistogramEqualizator::processImage(argv_t kwargs) {
 
         if (pixelQuantizator) {
             double* hist = NULL;
+			cout << "Calculating histogram!" << endl;
             this->calculateHistogram(hist, pixelQuantizator);
+			cout << "Equalizating histogram!" << endl;
+			this->equalizeHistogram(hist, pixelQuantizator);
+			cout << "Getting image from histogram!" << endl;
+			this->getImageFromEqualizedHistogram(hist, pixelQuantizator, &resultImage);
+			delete[] hist;
+			delete pixelQuantizator;
         }
-        listChannels.erase(0, pos + 1);
+       listChannels.erase(0, pos + 1);
     }
     return resultImage;
 }
 
+
+HistogramEqualizator::~HistogramEqualizator() {
+    // 
+}
