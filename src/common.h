@@ -78,6 +78,13 @@ typedef map<string, void*> argv_json;
 #define COMMAND_HISTOGRAM_EQUALIZATION_RGB          "--hqrgb"
 #define COMMAND_HISTOGRAM_EQUALIZATION_HSV          "--hqhsv"
 
+#define LIST_CHANNELS_FIELD                         "list-channel"
+#define B_CHANNEL                                   "b-channel"
+#define G_CHANNEL                                   "g-channel"
+#define R_CHANNEL                                   "r-channel"
+#define H_CHANNEL                                   "h-channel"
+#define GRAY_CHANNEL                                "gray-channel"
+
 
 const double TO_GRAYSCALE_COEFF[3] = { 0.11, 0.59, 0.30 };
 const double EPSILON = 1E-9;
