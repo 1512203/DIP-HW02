@@ -78,7 +78,28 @@ typedef map<string, void*> argv_json;
 #define COMMAND_HISTOGRAM_EQUALIZATION_RGB          "--hqrgb"
 #define COMMAND_HISTOGRAM_EQUALIZATION_HSV          "--hqhsv"
 
+#define DELIMITER_CHAR                              ','
+#define LIST_CHANNELS_FIELD                         "list-channel"
+#define B_CHANNEL                                   "b_channel"
+#define G_CHANNEL                                   "g_channel"
+#define R_CHANNEL                                   "r_channel"
+#define H_CHANNEL                                   "h_channel"
+#define GRAY_CHANNEL                                "gray_channel"
 
+
+const double TO_GRAYSCALE_COEFF[3] = { 0.11, 0.59, 0.30 };
+const double EPSILON = 1E-9;
+
+
+
+/* Some utility function */
+
+Mat readImage(string pathToImage);
+void displayImage(string windowName, Mat img);
+bool isGrayscale(Mat img);
+bool isEqualDouble(double a, double b);
+void rgb2hsv(int r, int g, int b, int &h, int &s, int &v); // 0 <= r, g, b <= 255 ; 0 <= h <= 360 ; 0 <= s, v <= 100
+void hsv2rgb(int h, int s, int v, int &r, int &g, int &b); // 0 <= r, g, b <= 255 ; 0 <= h <= 360 ; 0 <= s, v <= 100
 
 #endif
 
